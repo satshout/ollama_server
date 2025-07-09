@@ -7,6 +7,9 @@ pDify="80"
 
 set -eux
 
+# Podman compatibility
+# alias docker=podman
+
 # Start ollama-webui ------------------------------------
 cd ./ollama_webui
 

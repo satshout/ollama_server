@@ -5,18 +5,20 @@ services:
     volumes:
       - ollama:/root/.ollama
     ports:
-      - "11434:11434"
+      - "0.0.0.0:11434:11434" # Ollama API port listening to all interfaces
     restart: unless-stopped
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
     ports:
-      - "0.0.0.0:7860:8080"
+      - "0.0.0.0:7860:8080" # Open WebUI port listening to all interfaces
     volumes:
       - open-webui:/app/backend/data
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # Using the ollama service's internal URL also works 
+    # only if the ollama service is running in the same docker-compose context.
     # environment:
     #   - OLLAMA_BASE_URL=http://ollama:11434
     # depends_on:
