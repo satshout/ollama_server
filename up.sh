@@ -43,7 +43,6 @@ git reset --hard origin/main
 git pull origin main
 
 docker compose pull
-cp .env.example .env
 docker compose up -d
 
 # Wait for Dify to start

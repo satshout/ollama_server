@@ -14,6 +14,8 @@ after you've cloned the main repository, you'll need additional commands to get 
 git clone -b with_dify https://github.com/satshout/ollama_server.git
 cd ollama_server
 git submodule update --init --recursive
+cd dify/docker/
+cp .env.example .env # Prepare environment file before first run
 ```
 
 ## How to compose up
