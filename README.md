@@ -2,6 +2,10 @@
 
 ollama + webui + cloudflared
 
+with 
+
+- Dify: <https://github.com/langgenius/dify>
+
 ## When cloning this project,
 
 after you've cloned the main repository, you'll need additional commands to get the contents of its submodules.
