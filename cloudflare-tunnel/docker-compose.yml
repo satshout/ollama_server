@@ -1,0 +1,27 @@
+services:
+  cloudflare_ollama: # Cloudflared Token for "ollama_server" Tunnel
+    image: cloudflare/cloudflared:latest
+    network_mode: host # これのおかげで localhost を参照できるが、悪さもしている？
+    container_name: cloudflared_ollama
+    restart: always
+    command: tunnel --no-autoupdate --url http://localhost:11434 # network_mode: host を使うと localhost が参照できる
+    # command: tunnel --no-autoupdate --url http://ollama:11434
+    # depends_on:
+    #   - ollama
+    # command: tunnel --no-autoupdate run --url http://localhost:11434 --token xxxxx
+
+  cloudflare_webui:
+    image: docker.io/cloudflare/cloudflared:latest
+    network_mode: host
+    container_name: cloudflared_webui
+    restart: always
+    command: tunnel --no-autoupdate --url http://localhost:7860
+    # command: tunnel --no-autoupdate run --url http://localhost:7860 --token xxxxx
+
+  cloudflare_dify:
+    image: docker.io/cloudflare/cloudflared:latest
+    network_mode: host
+    container_name: cloudflared_dify
+    restart: always
+    command: tunnel --no-autoupdate --url http://localhost:80
+    # command: tunnel --no-autoupdate run --url http://localhost:7860 --token xxxxx

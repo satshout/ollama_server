@@ -5,7 +5,7 @@ ollama + webui + cloudflared
 after you've cloned the main repository, you'll need additional commands to get the contents of its submodules.
 
 ```bash
-git clone <Your Project Repository URL>
-cd <Your Project Directory>
+git clone https://github.com/satshout/ollama_server.git
+cd ollama_server
 git submodule update --init --recursive
 ```
