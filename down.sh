@@ -3,6 +3,9 @@
 
 set -eux
 
+# Podman compatibility
+# alias docker=podman
+
 # Stop ollama-webui
 cd ./ollama_webui
 docker compose down
