@@ -9,13 +9,6 @@ docker compose down
 # Wait for the Ollama to stop
 echo "Ollama WebUI has been stopped."
 
-# Stop Dify
-cd ./dify/docker
-docker compose down
-# Wait for Dify to stop
-echo "Dify has been stopped."
-cd ../../
-
 # Stop Cloudflare Tunnel
 cd ./cloudflare-tunnel
 docker compose down

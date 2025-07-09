@@ -3,7 +3,6 @@
 
 pOllama="11434"
 pOpenWebUI="7860"
-pDify="80"
 
 set -eux
 
@@ -32,27 +31,6 @@ set -eux
 echo "Open WebUI is up and running at http://localhost:$pOpenWebUI"
 
 cd ../
-
-# Start Dify ------------------------------------
-cd ./dify/docker
-
-git reset --hard origin/main
-git pull origin main
-
-docker compose pull
-cp .env.example .env
-docker compose up -d
-
-# Wait for Dify to start
-echo "Waiting for Dify to start..."
-set +eux
-while ! curl -s http://localhost:$pDify/ > /dev/null; do
-    sleep 1
-done
-set -eux
-echo "Dify is up and running at http://localhost:$pDify"
-
-cd ../../
 
 # Start Cloudflare Tunnel ------------------------------------
 cd ./cloudflare-tunnel
