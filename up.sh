@@ -39,7 +39,7 @@ echo "Open WebUI is up and running at http://localhost:$pOpenWebUI"
 docker pull docker.io/cloudflare/cloudflared:latest
 docker run -d \
   --name $cCloudflared \
-  --network my_ollama_network \
+  --network ollama_server_my_ollama_network \
   --restart always \
   docker.io/cloudflare/cloudflared:latest \
   tunnel --no-autoupdate --url http://$cOpenWebUI:$pOpenWebUI # Binding Quick Tunnel to Open WebUI service in the same network
