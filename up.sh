@@ -33,7 +33,7 @@ while ! curl -s http://localhost:$pOpenWebUIHost/ > /dev/null; do
     sleep 1
 done
 set -eux
-echo "Open WebUI is up and running at http://localhost:$pOpenWebUI"
+echo "Open WebUI is up and running at http://localhost:$pOpenWebUIHost"
 
 # Start Cloudflare Tunnel ------------------------------------
 docker pull docker.io/cloudflare/cloudflared:latest
