@@ -11,6 +11,7 @@ cd ./ollama_webui
 docker compose down
 # Wait for the Ollama to stop
 echo "Ollama WebUI has been stopped."
+cd ../
 
 # Stop Cloudflare Tunnel
 cd ./cloudflare-tunnel
