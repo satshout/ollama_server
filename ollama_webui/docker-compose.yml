@@ -7,6 +7,14 @@ services:
     ports:
       - "0.0.0.0:11434:11434" # Ollama API port listening to all interfaces
     restart: unless-stopped
+    # Enable GPU support if available
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
