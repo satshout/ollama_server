@@ -18,7 +18,6 @@ sudo bash up.sh
 ## How to update Open WebUI and Ollama
 
 ```bash
-cd ./ollama_webui
 sudo docker compose down
 sudo docker compose pull
 sudo docker compose up -d
@@ -27,7 +26,6 @@ sudo docker compose up -d
 ## How to remove and initiate the volumes of Open WebUI and Ollama
 
 ```bash
-cd ./ollama_webui
 sudo docker compose down -v # This will remove the named volumes
 sudo docker compose up -d
 ```

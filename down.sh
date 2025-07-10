@@ -8,19 +8,17 @@ set -eux
 # Podman compatibility
 # alias docker=podman
 
+# Stop ollama-webui
 echo "---"
 echo "Stopping and tearing down Ollama WebUI services..."
 
-# Stop ollama-webui
-cd ./ollama_webui
 docker compose down
 echo "Ollama WebUI services have been stopped and removed."
-cd ../
 
+# Stop Cloudflare Tunnel
 echo "---"
 echo "Stopping and removing Cloudflare Tunnel container..."
 
-# Stop Cloudflare Tunnel
 # Use docker stop and docker rm for the standalone cloudflared container
 docker stop "$cCloudflared" &> /dev/null || true # '|| true' prevents script from exiting if container doesn't exist
 docker rm "$cCloudflared" &> /dev/null || true
