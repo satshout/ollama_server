@@ -69,7 +69,7 @@ echo "The following URLs are available:"
 set +eux
 urls=()
 while [ ${#urls[@]} -eq 0 ]; do
-    mapfile -t urls < <(docker compose logs | grep -Eo 'https://[a-zA-Z0-9.-]+\.trycloudflared\.com' | sort -u)
+    mapfile -t urls < <(docker compose logs | grep -Eo 'https://[a-zA-Z0-9.-]+\.trycloudflare\.com' | sort -u)
     sleep 5
 done
 set -eux
