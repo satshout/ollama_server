@@ -1,24 +1,31 @@
 # This script is used to stop and down the Ollama WebUI using Docker Compose.
 #!/bin/bash
 
+cCloudflared="cloudflared" # container name for Cloudflare Tunnel
+
 set -eux
 
 # Podman compatibility
 # alias docker=podman
 
+echo "---"
+echo "Stopping and tearing down Ollama WebUI services..."
+
 # Stop ollama-webui
 cd ./ollama_webui
 docker compose down
-# Wait for the Ollama to stop
-echo "Ollama WebUI has been stopped."
+echo "Ollama WebUI services have been stopped and removed."
 cd ../
+
+echo "---"
+echo "Stopping and removing Cloudflare Tunnel container..."
 
 # Stop Cloudflare Tunnel
-cd ./cloudflare-tunnel
-docker compose down
-# Wait for Cloudflare Tunnel to stop
-echo "Cloudflare Tunnel has been stopped."
-cd ../
+# Use docker stop and docker rm for the standalone cloudflared container
+docker stop "$cCloudflared" &> /dev/null || true # '|| true' prevents script from exiting if container doesn't exist
+docker rm "$cCloudflared" &> /dev/null || true
 
-# Display the URLs for the services
+echo "Cloudflare Tunnel container has been stopped and removed."
+
+echo "---"
 echo "All services have been stopped and removed."

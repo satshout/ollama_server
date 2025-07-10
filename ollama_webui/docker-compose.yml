@@ -5,24 +5,43 @@ services:
     volumes:
       - ollama:/root/.ollama
     ports:
-      - "0.0.0.0:11434:11434" # Ollama API port listening to all interfaces
+      - "11434:11434" # Ollama API port exposed to the host
+    networks:
+      - my_ollama_network
     restart: unless-stopped
+    # Enable GPU support if available
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
     ports:
-      - "0.0.0.0:7860:8080" # Open WebUI port listening to all interfaces
+      - "3000:8080" # Open WebUI port exposed to the host
     volumes:
       - open-webui:/app/backend/data
+    # Accessing Ollama API via the host's network <http://host.docker.internal:11434 
+    # is the default configuration for Open WebUI on Docker.
+    # This allows the Open WebUI to communicate with the Ollama service
+    # running on the host machine <http://localhost:11434>.
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    
     # Using the ollama service's internal URL also works 
-    # only if the ollama service is running in the same docker-compose context.
+    # only if the ollama service is running in the same docker-compose context,
+    # and it is more reliable in a Docker Swarm or Kubernetes setup.
     # environment:
     #   - OLLAMA_BASE_URL=http://ollama:11434
     # depends_on:
     #   - ollama
+    networks:
+      - my_ollama_network
     restart: always
 
 volumes:
