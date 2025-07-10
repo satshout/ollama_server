@@ -44,6 +44,10 @@ services:
       - my_ollama_network
     restart: always
 
+networks:
+  my_ollama_network:
+    driver: bridge
+
 volumes:
   ollama:
     name: ollama
